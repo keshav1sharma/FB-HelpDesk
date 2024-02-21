@@ -31,7 +31,7 @@ app.post("/webhook", (req, res) => {
     let body = req.body;
 
     console.log(`Received webhook:`);
-    console.log(body.changed_fields);
+    console.log(body);
 
     // Send a 200 OK response if this is a page webhook
 
