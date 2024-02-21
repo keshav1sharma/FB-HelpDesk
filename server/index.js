@@ -35,13 +35,23 @@ app.post("/webhook", (req, res) => {
     // Send a 200 OK response if this is a page webhook
 
     if (body.object === "page") {
-        // Returns a '200 OK' response to all requests
-        res.status(200).send("EVENT_RECEIVED");
-        // Determine which webhooks were triggered and get sender PSIDs and locale, message content and more.
+        body.entry.forEach(function (entry) {
+
+            // Gets the body of the webhook event
+            let webhook_event = entry.messaging[0];
+            console.log(webhook_event);
+
+            // Get the sender PSID
+            let sender_psid = webhook_event.sender.id;
+            console.log('Sender PSID: ' + sender_psid);
+    });
+
+// Return a '200 OK' response to all events
+res.status(200).send('EVENT_RECEIVED');
     } else {
-        // Return a '404 Not Found' if event is not from a page subscription
-        res.sendStatus(404);
-    }
+    // Return a '404 Not Found' if event is not from a page subscription
+    res.sendStatus(404);
+}
 });
 
 app.get("/webhook", (req, res) => {
