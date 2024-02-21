@@ -8,7 +8,6 @@ import { Avatar, Container, Grid } from '@mui/material';
 import { ChatBox, ReceiverMessage, SenderMessage } from "mui-chat-box";
 import TextField from '@mui/material/TextField';
 import { format } from 'date-fns';
-import Paper from '@mui/material/Paper';
 import "react-chat-elements/dist/main.css"
 import { MessageBox } from "react-chat-elements";
 
@@ -44,9 +43,7 @@ export default function ChatWindow() {
 
                             {Array.from({ length: 10 }, (_, i) => (
                                 <React.Fragment key={i}>
-                                    {/* <ReceiverMessage avatar={<Avatar>KS</Avatar>} style={{ backgroundColor: 'black' }}>
-                                        Hey How are you?
-                                    </ReceiverMessage> */}
+
                                     <Box sx={{ display: 'flex', width: '100%', ml:'1rem' }}>
                                     <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
                                     <MessageBox
@@ -56,16 +53,6 @@ export default function ChatWindow() {
                                     />
                                     </Box>
                                     <Typography sx={{ ml: '5rem' }} variant='caption'>{date}</Typography>
-                                        
-                                    {/* <SenderMessage avatar={<Avatar>KS</Avatar>}>
-                                        I am good, How about you?
-                                    </SenderMessage> */}
-                                    {/* <Typography sx={{ml:'32rem'}} variant='caption'> {date}</Typography> */}
-                                    {/* <Box sx={{ display: 'flex' , width:'100%'}}>
-                                        <Paper elevation={1} sx={{ml:'20rem',maxWidth:'20rem', justifyContent: 'center' , textAlign: 'center', mr:'0.5rem' , float:'right' }}>
-                                              This is a test </Paper>
-                                        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-                                    </Box> */}
                                     
                                     <Box sx={{ display: 'flex', width: '100%', justifyContent: 'flex-end', mr: '1rem' }}>
                                     <MessageBox
