@@ -58,12 +58,9 @@ export default function RegisterPage() {
                                 <Button variant="contained" sx={{ ml:'4rem', width: '70%', mt: '1rem', backgroundColor: '#01509a', color: 'white' }} type="submit">Sign Up</Button>
                                 <br />
                                 <br /><br />
-
                                 <Link href="/login" style={{ color: 'blue', ml:'2rem' }}>Already have an account? Login</Link>
                             </form>
-                            
                         </Box>
-                        
                     </Box>
                 </Grid>
             </Grid>

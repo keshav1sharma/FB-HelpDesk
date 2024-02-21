@@ -23,6 +23,7 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
 
 // Routes
 app.use('/auth', authRoute);
+app.use('/fb', authRoute);
 
 
 app.get('/', (req, res) => {
