@@ -10,18 +10,19 @@ import { format, set } from 'date-fns';
 import "react-chat-elements/dist/main.css"
 import { MessageBox } from "react-chat-elements";
 import ChatData from '../data/ChatData';
+import axios from 'axios';
 
 function messageComponentleft({ message }) {
     return (
         <>
             <Box sx={{ display: 'flex', width: '100%', ml: '1rem' }}>
-                                        <Avatar alt="K" src="https://platform-lookaside.fbsbx.com/platform/profilepic/?eai=AXFFhFEaW0o3hmMXoXSMKLS97lHPFXYYfDvJoi6ztD-FjB-eMR9jXVsdw4hSAJwqlU3hNRMhUUFm&psid=7220773248043036&width=1024&ext=1711185609&hash=AfpvFH1HG_hzrDW2c0aLIXVoA6k5giz5uJDvlKyuRPXkkQ" />
-                                        <MessageBox
-                                            position='left'
-                                            type='text'
-                                            text={message}
-                                        />
-                                    </Box>
+                <Avatar alt="K" src="https://platform-lookaside.fbsbx.com/platform/profilepic/?eai=AXFFhFEaW0o3hmMXoXSMKLS97lHPFXYYfDvJoi6ztD-FjB-eMR9jXVsdw4hSAJwqlU3hNRMhUUFm&psid=7220773248043036&width=1024&ext=1711185609&hash=AfpvFH1HG_hzrDW2c0aLIXVoA6k5giz5uJDvlKyuRPXkkQ" />
+                <MessageBox
+                    position='left'
+                    type='text'
+                    text={message}
+                />
+            </Box>
         </>
     )
 }
@@ -29,16 +30,17 @@ function messageComponentleft({ message }) {
 function messageComponentright({ message }) {
     return (
         <>
-                            <Box sx={{ display: 'flex', width: '100%', justifyContent: 'flex-end', mr: '1rem' }}>
-                                        <MessageBox
-                                            position="right"
-                                            type="text"
-                                            text={message}
-                                        />
-                                        <Avatar alt="A" src="/logo.png" />
-                                    </Box>
+            <Box sx={{ display: 'flex', width: '100%', justifyContent: 'flex-end', mr: '1rem' }}>
+                <MessageBox
+                    position="right"
+                    type="text"
+                    text={message}
+                />
+                <Avatar alt="A" src="/logo.png" />
+            </Box>
         </>
-    )}
+    )
+}
 
 
 export default function ChatWindow() {
@@ -82,14 +84,57 @@ export default function ChatWindow() {
             // For now, let's just log the input value
             console.log('Enter pressed. Input value:', inputValue);
             senderResponse.push(inputValue);
+            sendMessage(inputValue);
             e.target.value = '';
-            
-           // render the messageComponentright with the inputValue
+
+            // render the messageComponentright with the inputValue
             setSenderResponse(senderResponse);
+
         }
     };
 
-    let prevLength = chatData.length-1;
+    const sendMessage = async (message) => {
+        const pageAccessToken = 'EAAK7zA1SVtkBOwHZCTWJu4S4LkszfqBwVhNxtpJhLmiJhzSmz4tU2sOZAZCG3xUNXgSUfi7kftBSwQ2wZCt9c0WZAcdoIaDpRpeSA3ubdicUYXy1kGg2Gr8p3BSZAi4IQLdfWpDrglkCoV0gOlLbNadzIGhcInZBHc8sCNIQ2g3rTuN48spLNOV4dcP5WeCaDuJSKwGGDfQd1PGwHctP64xHiEZD';
+        const apiVersion = 'v19.0'; // Replace with your desired API version
+        const pageId = '231726763361824';
+        const psid = '7220773248043036'; // Replace with the recipient's PSID
+
+        //const url = `https://graph.facebook.com/${apiVersion}/${pageId}/conversations?access_token=${pageAccessToken}`;
+
+        let request_body = {
+            "recipient": {
+                "id": psid
+            },
+            "message": message
+        }
+
+        request({
+            "uri": "https://graph.facebook.com/v19.0/me/messages",
+            "qs": { "access_token": pageAccessToken },
+            "method": "POST",
+            "json": request_body
+        }, (err, res, body) => {
+            if (!err) {
+                console.log('message sent!')
+            } else {
+                console.error("Unable to send message:" + err);
+            }
+        }
+        );
+
+
+
+
+    };
+
+
+
+
+
+
+
+
+    let prevLength = chatData.length - 1;
     console.log(chatData.length, prevLength);
 
     const date = format(new Date(), 'MMM dd, h:mm a');
@@ -120,26 +165,25 @@ export default function ChatWindow() {
                         <Box sx={{ Zindex: '5' }}>
 
 
-                            {chatData && chatData.map((message , index) => (
-                                index > 12 && (
-                                <React.Fragment key={index}>
-                                    {React.createElement(messageComponentleft, { message: chatData[index].message })}
-                                    {prevLength = chatData.length}
-                                    <Typography sx={{ ml: '5rem' }} variant='caption'>{date}</Typography>
+                            {chatData && chatData.map((message, index) => (
+                                index > 13 && (
+                                    <React.Fragment key={index}>
+                                        {React.createElement(messageComponentleft, { message: chatData[index].message })}
+                                        <Typography sx={{ ml: '5rem' }} variant='caption'>{date}</Typography>
 
 
-                                </React.Fragment>
+                                    </React.Fragment>
                                 )
-                            ))} 
+                            ))}
                             {senderResponse && senderResponse.map((message, index) => (
-                            <React.Fragment key={index}>
-                            {React.createElement(messageComponentright, { message: {message} })}
-                            <Typography sx={{ ml: '32rem' }} variant='caption'> {date}</Typography>
-                            </React.Fragment>
-                            
+                                <React.Fragment key={index}>
+                                    {React.createElement(messageComponentright, { message: { message } })}
+                                    <Typography sx={{ ml: '32rem' }} variant='caption'> {date}</Typography>
+                                </React.Fragment>
+
                             ))
                             }
-                            
+
                         </Box>
                     </Box>
                 </Grid>
