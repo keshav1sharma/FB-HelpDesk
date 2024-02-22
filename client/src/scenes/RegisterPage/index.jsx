@@ -13,7 +13,7 @@ export default function RegisterPage() {
         const password = e.target.password.value;
         
         try{
-            const response = await axios.post('http://localhost:5000/auth/register', {username, email, password});
+            const response = await axios.post('https://fb-help-desk-backend.vercel.app/auth/register', {username, email, password});
             if(response.status === 201){
                 alert('User created successfully');
                 // Redirect to login page

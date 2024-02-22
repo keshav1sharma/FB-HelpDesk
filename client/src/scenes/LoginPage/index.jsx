@@ -12,7 +12,7 @@ export default function LoginPage() {
         const password = e.target.password.value;
         console.log(email, password);
         try{
-            const response = await axios.post('http://localhost:5000/auth/login', {email, password});
+            const response = await axios.post('https://fb-help-desk-backend.vercel.app/auth/login', {email, password});
             console.log(response)
             if(response.status === 200){
 
