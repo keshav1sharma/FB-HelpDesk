@@ -13,8 +13,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Button from '@mui/material/Button';
 import SegmentIcon from '@mui/icons-material/Segment';
 
-
 export default function ConversationList() {
+
+
     return (
         <>
         <AppBar position="static" sx={{backgroundColor: 'white'}}>
@@ -29,10 +30,10 @@ export default function ConversationList() {
         <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
             <ListItem alignItems="flex-start">
                 <ListItemAvatar>
-                    <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                    <Avatar alt="Remy Sharp" src="https://platform-lookaside.fbsbx.com/platform/profilepic/?eai=AXFFhFEaW0o3hmMXoXSMKLS97lHPFXYYfDvJoi6ztD-FjB-eMR9jXVsdw4hSAJwqlU3hNRMhUUFm&psid=7220773248043036&width=1024&ext=1711185609&hash=AfpvFH1HG_hzrDW2c0aLIXVoA6k5giz5uJDvlKyuRPXkkQ" />
                 </ListItemAvatar>
                 <ListItemText
-                    primary="Brunch this weekend?"
+                    primary="Keshav Sharma"
                     secondary={
                         <React.Fragment>
                             <Typography
@@ -43,55 +44,13 @@ export default function ConversationList() {
                             >
                                 Ali Connors
                             </Typography>
-                            {" — I'll be in your neighborhood doing errands this…"}
+                            {" — Hey , I would like to know about ..."}
                         </React.Fragment>
                     }
                 />
             </ListItem>
             <Divider variant="inset" component="li" />
-            <ListItem alignItems="flex-start">
-                <ListItemAvatar>
-                    <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-                </ListItemAvatar>
-                <ListItemText
-                    primary="Summer BBQ"
-                    secondary={
-                        <React.Fragment>
-                            <Typography
-                                sx={{ display: 'inline' }}
-                                component="span"
-                                variant="body2"
-                                color="text.primary"
-                            >
-                                to Scott, Alex, Jennifer
-                            </Typography>
-                            {" — Wish I could come, but I'm out of town this…"}
-                        </React.Fragment>
-                    }
-                />
-            </ListItem>
-            <Divider variant="inset" component="li" />
-            <ListItem alignItems="flex-start">
-                <ListItemAvatar>
-                    <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-                </ListItemAvatar>
-                <ListItemText
-                    primary="Oui Oui"
-                    secondary={
-                        <React.Fragment>
-                            <Typography
-                                sx={{ display: 'inline' }}
-                                component="span"
-                                variant="body2"
-                                color="text.primary"
-                            >
-                                Sandra Adams
-                            </Typography>
-                            {' — Do you have Paris recommendations? Have you ever…'}
-                        </React.Fragment>
-                    }
-                />
-            </ListItem>
+
         </List>
     </>);
 }
