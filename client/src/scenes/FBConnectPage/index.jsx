@@ -1,8 +1,11 @@
 import React from "react";
 import { Button, Grid, Input, Link, TextField } from '@mui/material'
 import { Box } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export default function FBConnectPage() {
+    const navigate = useNavigate();
+
     return (
         <>
             <>
@@ -22,7 +25,9 @@ export default function FBConnectPage() {
                                 <Box sx={{width:'90%', ml:'1rem' }}>
                                     
                                 </Box>
-                                <Button variant="contained" sx={{ ml:'4rem', width: '70%', mt: '1rem', backgroundColor: '#01509a', color: 'white' }} type="submit">Connect Page</Button>
+                                <Button variant="contained" sx={{ ml:'4rem', width: '70%', mt: '1rem', backgroundColor: '#01509a', color: 'white' }} type="submit" onClick={()=>{
+                                    navigate('/home');
+                                }}>Connect Page</Button>
                                 <br />
                                 <br /><br />
                             

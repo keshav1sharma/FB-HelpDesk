@@ -5,7 +5,6 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Avatar, Container, Grid } from '@mui/material';
-import { ChatBox, ReceiverMessage, SenderMessage } from "mui-chat-box";
 import TextField from '@mui/material/TextField';
 import { format, set } from 'date-fns';
 import "react-chat-elements/dist/main.css"
@@ -118,7 +117,7 @@ export default function ChatWindow() {
                         '-ms-overflow-style': 'none',
                         'scrollbar-width': 'none'
                     }}>
-                        <ChatBox sx={{ Zindex: '5' }}>
+                        <Box sx={{ Zindex: '5' }}>
 
 
                             {chatData && chatData.map((message , index) => (
@@ -141,7 +140,7 @@ export default function ChatWindow() {
                             ))
                             }
                             
-                        </ChatBox>
+                        </Box>
                     </Box>
                 </Grid>
                 <Grid item lg={12} xl={12} sm={12}>
